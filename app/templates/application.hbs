@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<header>
+<nav>
+  {{link-to "Alpha" "alpha"}}
+  {{link-to "Bravo" "bravo"}}
+  {{link-to "Charlie" "charlie"}}
+</nav>
+</header>
+<main>
+  {{outlet}}
+  <button onclick={{action 'click'}}>Click for Document Body Focus</button>
+</main>
