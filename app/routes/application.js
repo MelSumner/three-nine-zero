@@ -3,9 +3,6 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
   router: service('router'),
-  model(params) {
-    return params;
-  },
   init() {
     this._super(...arguments);
     this.router.on('routeDidChange', transition => {
