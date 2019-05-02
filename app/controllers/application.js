@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  actions: {
-    click() {
-      document.body.focus();
-    }
-  }
+  router: service(),
+  currentURL: computed('router.currentURL', function() {
+    return this.router.currentURL;
+  })
 });
