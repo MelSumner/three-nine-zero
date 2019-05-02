@@ -1,7 +1,6 @@
 # three-nine-zero
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This app is being used to figure out how we make the router in Ember apps accessible, and may change based on the research being carried out in the [Accessible Router Experimentations](https://github.com/MelSumner/ember-a11y-roadmap/blob/master/rfc-research/router/ideas-and-experiments.md). 
 
 ## Prerequisites
 
