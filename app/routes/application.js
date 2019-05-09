@@ -1,5 +1,8 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import Ember from 'ember';
+
+const emberRequire = Ember.__loader.require('@ember/-internals/glimmer');
 
 export default Route.extend({
   router: service('router'),
@@ -12,10 +15,9 @@ export default Route.extend({
       }
 
       if (transition.to !== null) {
-        setTimeout(function() {
-          document.body.querySelector('#nav-message').setAttribute("tabindex", "-1");
-          document.body.querySelector('#nav-message').focus();
-        }, 0);        
+        emberRequire.renderSettled().then(function() {
+          document.body.querySelector('#ember-primary-application-outlet').focus();
+        });        
       }
     });
   }

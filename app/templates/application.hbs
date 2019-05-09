@@ -1,11 +1,11 @@
-<div tabindex="-1" class="ember-sr-only sr-only-focusable" id="nav-message">Navigation to {{this.currentURL}} is complete. You may now navigate as you wish.</div>
 <header>
   <nav>
+    {{link-to "Home" "index"}}
     {{link-to "Alpha" "alpha"}}
     {{link-to "Bravo" "bravo"}}
     {{link-to "Charlie" "charlie"}}
   </nav>
 </header>
-<main>
+<main tabindex="-1" id="ember-primary-application-outlet">
   {{outlet}}
 </main>

@@ -1,0 +1,51 @@
+<h1>Accessible Routing in Ember.js</h1>
+
+<p>
+  This approach to accessible routing uses <code>renderSettled</code>, currently private API in Ember.js. While it has only so far been tested in Firefox + NVDA on Windows, results seem promising.
+</p>
+<p>
+  These are the steps taken to implement route-level focus:
+  <ol>
+    <li>Add an index template</li>
+    <li>Wrap the <code>{{outlet}}</code> in the application.hbs with an element with <code>tabindex="-1"</code> and apply the ID of ember-primary-application-outlet</li>
+    <li>In the application.js file, do these three things: 
+      <ol>
+        <li>add <code>import Ember from 'ember';</code></li>
+        <li>add a const to import <code>renderSettled</code>: <code>const emberRequire = Ember.__loader.require('@ember/-internals/glimmer');</code></li>
+        <li>add the code that waits until the rendering has really finished, then look for the element and add focus to it:
+          <pre>
+            <code>
+export default Route.extend({
+  router: service('router'),
+  init() {
+    this._super(...arguments);
+    this.router.on('routeDidChange', transition => {
+
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+
+      if (transition.to !== null) {
+        emberRequire.renderSettled().then(function() {
+          document.body.querySelector('#ember-primary-application-outlet').focus();
+        });        
+      }
+    });
+  }
+});
+            </code>
+          </pre>
+        </li>
+      </ol>
+    </li>
+    <li>
+      create some routes and add some content to them
+    </li>
+  </ol>
+</p>
+<p>
+  To see this in action, please turn on a screen reader, and then navigate to any of the routes in the navbar at the top of the page. The content of the page should be read out. 
+</p>
+<p>
+  What do you think about this solution?? I would like to hear from you!
+</p>
