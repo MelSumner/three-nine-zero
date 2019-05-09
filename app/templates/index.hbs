@@ -11,7 +11,7 @@
     <li>In the application.js file, do these three things: 
       <ol>
         <li>add <code>import Ember from 'ember';</code></li>
-        <li>add a const to import <code>renderSettled</code>: <code>const emberRequire = Ember.__loader.require('@ember/-internals/glimmer');</code></li>
+        <li>add a const for <code>renderSettled</code>so we can use it: <code>const emberRequire = Ember.__loader.require('@ember/-internals/glimmer');</code></li>
         <li>add the code that waits until the rendering has really finished, then look for the element and add focus to it:
           <pre>
             <code>
